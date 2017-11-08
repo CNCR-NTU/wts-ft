@@ -55,15 +55,13 @@ import rospy
 from rospy_tutorials.msg import Floats
 from rospy.numpy_msg import numpy_msg
 import numpy as np
-import wts_ft_interface as wtsft
+import wts_ft_interface_1 as wtsft
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import matplotlib.ticker as plticker
 import colormaps as cmaps #small library for plasma colormap
 
-#initialisation for figs
 fig, ax = plt.subplots(figsize=(7,10))
-#global empty numpy array
 global array_fix
 array_fix = np.zeros(shape=(8,4))
  
@@ -72,18 +70,13 @@ def callback(data):
 	array=np.array(data.data, dtype=np.float32)
 	if array.shape[0]==1:
 		print "Sensor",int(array[0])
-	else:
-		#f=open('test9.bin', 'a+b')
-		#np.save(f,array)
-		#f.close()  
-		#print('Raw array: {}'.format(array)) 
-
+	else:   
 		array_fix=array.reshape((wtsft.SX,wtsft.SY))
-		#updates the figure
 		im.set_data(array_fix)
 		plt.draw()
-		if(np.amax(array_fix) > int(62000)):
-			
+		if(np.amax(array_fix) > int(62000)): #62000 is max range for the sensor reading, when it reaches
+						     #shows belwo message
+			#just a friendly message	
 			plt.title("Too strong", color = 'red')
 			print("Too strong!!!!!!!!!!!!!!!!!!!!!")
 		else:
@@ -97,8 +90,8 @@ def updatefig(*args):
     return im,      
 '''
 def listener():
-	rospy.init_node('listener_sensor1')
-	rospy.Subscriber('wtsft_sensor1', numpy_msg(Floats), callback)
+	rospy.init_node('listener_sensor2')
+	rospy.Subscriber('wtsft_sensor2', numpy_msg(Floats), callback)
 	#ani = animation.FuncAnimation(fig,callback,frames = 400,interval=10 ,blit =True)
 	plt.show()	
 	rospy.spin()
@@ -106,9 +99,9 @@ def listener():
     
 if __name__ == '__main__':
 	im = ax.imshow(array_fix, interpolation = "nearest", cmap = cmaps.plasma,vmax = 80000)
-	
-	#setting background color
+	#ax.set_facecolor('black')
 	fig.patch.set_facecolor('black')
+
 	# Major ticks
 	ax.set_xticks(np.arange(0, 4, 1));
 	ax.set_yticks(np.arange(0, 8, 1));

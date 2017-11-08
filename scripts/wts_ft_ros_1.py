@@ -42,7 +42,7 @@ __description__='WTS FT publisher for ROS Kinect'
 #===============================================================================
 # IMPORT STATEMENTS
 #===============================================================================
-import wts_ft_interface as wtsft
+import wts_ft_interface_1 as wtsft
 import rospy
 from rospy.numpy_msg import numpy_msg
 from rospy_tutorials.msg import Floats
@@ -69,17 +69,14 @@ def testGetSensors(port):
 #        testGetSensors()   
 
 def talker():
-    pub = rospy.Publisher('wtsft_sensor1', numpy_msg(Floats), queue_size=10)
-    rospy.init_node('pub_sensor1', anonymous=True)
+    pub = rospy.Publisher('wtsft_sensor2', numpy_msg(Floats), queue_size=10)
+    rospy.init_node('pub_sensor2', anonymous=True)
     rate = rospy.Rate(60) # 10hz
-    i=0
     while not rospy.is_shutdown():
         #for i in range (2,5):
-        
+        i=1
         sensorArray = np.array(testGetSensors(PORT+str(i)),dtype=np.float32)
         rospy.loginfo(sensorArray)
-        temperature = wtsft.getSensorTemperature(PORT+str(i))
-        rospy.loginfo(temperature)
         pub.publish(np.array([i],dtype=np.float32))
         pub.publish(sensorArray.reshape(wtsft.SX*wtsft.SY))
         rate.sleep()
