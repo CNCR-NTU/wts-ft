@@ -55,7 +55,7 @@ import rospy
 from rospy_tutorials.msg import Floats
 from rospy.numpy_msg import numpy_msg
 import numpy as np
-import wts_ft_interface_1 as wtsft
+import wts_ft_interface_2 as wtsft
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import matplotlib.ticker as plticker
@@ -90,11 +90,11 @@ def updatefig(*args):
     return im,      
 '''
 def listener():
-	rospy.init_node('listener_sensor2')
-	rospy.Subscriber('wtsft_sensor2', numpy_msg(Floats), callback)
+	rospy.init_node('listener_sensor3')
+	rospy.Subscriber('wtsft_sensor3', numpy_msg(Floats), callback)
 	#ani = animation.FuncAnimation(fig,callback,frames = 400,interval=10 ,blit =True)
-	plt.show()
-	time.sleep(0.1)	
+	plt.show()	
+	time.sleep(0.4)
 	rospy.spin()
     
     
@@ -102,7 +102,7 @@ if __name__ == '__main__':
 	im = ax.imshow(array_fix, interpolation = "nearest", cmap = cmaps.plasma,vmax = 4095)
 	#ax.set_facecolor('black')
 	fig.patch.set_facecolor('black')
-	fig.suptitle("Index Finger", fontsize=20,color = 'white')
+	fig.suptitle("Ring Finger", fontsize=20,color = 'white')
 
 	# Major ticks
 	ax.set_xticks(np.arange(0, 4, 1));

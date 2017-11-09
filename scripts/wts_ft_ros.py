@@ -38,7 +38,7 @@ __license__ = 'Copyright (C)'
 __date__ = 'Thu Jun 29 17:50:49 2017'
 __version__ = '0.1'
 __file_name__='wts_ft_ros.py'
-__description__='WTS FT publisher for ROS Kinect'
+__description__='WTS FT publisher for ROS Kinectic'
 #===============================================================================
 # IMPORT STATEMENTS
 #===============================================================================
@@ -69,20 +69,23 @@ def testGetSensors(port):
 #        testGetSensors()   
 
 def talker():
-    pub = rospy.Publisher('wtsft_sensor1', numpy_msg(Floats), queue_size=10)
     rospy.init_node('pub_sensor1', anonymous=True)
-    rate = rospy.Rate(60) # 10hz
+    pub = rospy.Publisher('wtsft_sensor1', numpy_msg(Floats), queue_size=2)
+    
+    rate = rospy.Rate(10) # 10hz
     i=0
     while not rospy.is_shutdown():
         #for i in range (2,5):
-        
-        sensorArray = np.array(testGetSensors(PORT+str(i)),dtype=np.float32)
-        rospy.loginfo(sensorArray)
-        temperature = wtsft.getSensorTemperature(PORT+str(i))
-        rospy.loginfo(temperature)
-        pub.publish(np.array([i],dtype=np.float32))
-        pub.publish(sensorArray.reshape(wtsft.SX*wtsft.SY))
-        rate.sleep()
+        try:
+		sensorArray = np.array(testGetSensors(PORT+str(i)),dtype=np.float32)
+		rospy.loginfo(sensorArray)
+		temperature = wtsft.getSensorTemperature(PORT+str(i))
+		rospy.loginfo(temperature)
+		pub.publish(np.array([i],dtype=np.float32))
+		pub.publish(sensorArray.reshape(wtsft.SX*wtsft.SY))
+		rate.sleep()
+	except:
+		print("connection error")
 
 if __name__ == '__main__':
     try:

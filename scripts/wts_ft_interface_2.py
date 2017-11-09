@@ -35,7 +35,7 @@ without the express permission of Prof. Martin McGinnity <martin.mcginnity@ntu.a
 __license__ = 'Copyright (C)'
 __date__ = 'Wed Jun 21 11:41:06 2017'
 __version__ = '0.1'
-__file_name__='wts_ft_interface.py'
+__file_name__='wts_ft_interface_1.py'
 __description__='WTS-FT sensors interface'
 #===============================================================================
 # IMPORT STATEMENTS
@@ -51,7 +51,7 @@ import matplotlib.pyplot as plt
 # METHODS
 #===============================================================================
 TXRX_TIMEOUT = 0.025
-PORT = '/dev/ttyACM0'
+PORT = '/dev/ttyACM2'
 PORT_PARAMS = '115200'           # Serial port parameters
 WTS_SET_FRONTEND_GAIN ='36'      # Parameter: 8bit uint
 WTS_GET_SINGLE_FRAME = '20'     # Parameter: 0 (uncompressed) / 1 (RLE-compressed)
@@ -98,7 +98,7 @@ def getSensorValues(port):
     packet=prepareacket(WTS_GET_SINGLE_FRAME,["01","00"],["00"])
     ser=serial.Serial(port, PORT_PARAMS, timeout=TXRX_TIMEOUT)
     ser.write(packet)
-    b=ser.read(80)
+    b=ser.read(120)
     ser.flush()
     ser.close()
     sensorValues=np.zeros([SX,SY])
@@ -109,6 +109,7 @@ def getSensorValues(port):
             
             inc+=1
     return sensorValues
+
 
 #===============================================================================
 # MAIN METHOD AND TESTING AREA

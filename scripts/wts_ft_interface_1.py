@@ -98,15 +98,17 @@ def getSensorValues(port):
     packet=prepareacket(WTS_GET_SINGLE_FRAME,["01","00"],["00"])
     ser=serial.Serial(port, PORT_PARAMS, timeout=TXRX_TIMEOUT)
     ser.write(packet)
-    b=ser.read(80)
+    b=ser.read(100)
+    ser.flush()
     ser.close()
     sensorValues=np.zeros([SX,SY])
     inc=0
     for i in range (0,SX):
         for j in range (0,SY):
-            sensorValues[i,j]=int(struct.unpack('>H',b[13+inc*2:15+inc*2])[0])
+            sensorValues[i,j]=int(struct.unpack('>H',b[13+inc*2:15+inc*2])[0]/16) #range is 65536 
             inc+=1
     return sensorValues
+
 
 #===============================================================================
 # MAIN METHOD AND TESTING AREA

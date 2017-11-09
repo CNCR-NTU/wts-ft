@@ -42,7 +42,7 @@ __description__='WTS FT publisher for ROS Kinect'
 #===============================================================================
 # IMPORT STATEMENTS
 #===============================================================================
-import wts_ft_interface_1 as wtsft
+import wts_ft_interface_2 as wtsft
 import rospy
 from rospy.numpy_msg import numpy_msg
 from rospy_tutorials.msg import Floats
@@ -69,17 +69,20 @@ def testGetSensors(port):
 #        testGetSensors()   
 
 def talker():
-    pub = rospy.Publisher('wtsft_sensor2', numpy_msg(Floats), queue_size=2)
-    rospy.init_node('pub_sensor2', anonymous=True)
+    pub = rospy.Publisher('wtsft_sensor3', numpy_msg(Floats), queue_size=2)
+    rospy.init_node('pub_sensor3', anonymous=True)
     rate = rospy.Rate(60) # 10hz
     while not rospy.is_shutdown():
         #for i in range (2,5):
-        i=1
-        sensorArray = np.array(testGetSensors(PORT+str(i)),dtype=np.float32)
-        rospy.loginfo(sensorArray)
-        pub.publish(np.array([i],dtype=np.float32))
-        pub.publish(sensorArray.reshape(wtsft.SX*wtsft.SY))
-        rate.sleep()
+        try:
+		i=2
+		sensorArray = np.array(testGetSensors(PORT+str(i)),dtype=np.float32)
+		rospy.loginfo(sensorArray)
+		pub.publish(np.array([i],dtype=np.float32))
+		pub.publish(sensorArray.reshape(wtsft.SX*wtsft.SY))
+		rate.sleep()
+	except:
+		print("connection error")
 
 if __name__ == '__main__':
     try:

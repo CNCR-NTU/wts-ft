@@ -50,7 +50,7 @@ __description__='DESC'
 #===============================================================================
 # MAIN METHOD AND TESTING AREA
 #===============================================================================
-
+import time
 import rospy
 from rospy_tutorials.msg import Floats
 from rospy.numpy_msg import numpy_msg
@@ -82,33 +82,29 @@ def callback(data):
 		#updates the figure
 		im.set_data(array_fix)
 		plt.draw()
-		if(np.amax(array_fix) > int(62000)):
-			
+		if(np.amax(array_fix) > int(4000)):
 			plt.title("Too strong", color = 'red')
 			print("Too strong!!!!!!!!!!!!!!!!!!!!!")
 		else:
 			plt.title("Reading Pressure", color = 'white')
 		#ax.cla()
         
-'''              
-def updatefig(*args):
-    
-    im.set_array(array_fix)
-    return im,      
-'''
+
 def listener():
 	rospy.init_node('listener_sensor1')
 	rospy.Subscriber('wtsft_sensor1', numpy_msg(Floats), callback)
 	#ani = animation.FuncAnimation(fig,callback,frames = 400,interval=10 ,blit =True)
-	plt.show()	
+	plt.show()
+		
 	rospy.spin()
     
     
 if __name__ == '__main__':
-	im = ax.imshow(array_fix, interpolation = "nearest", cmap = cmaps.plasma,vmax = 80000)
+	im = ax.imshow(array_fix, interpolation = "nearest", cmap = cmaps.plasma,vmax = 4095)
 	
 	#setting background color
 	fig.patch.set_facecolor('black')
+	fig.suptitle("Thumb", fontsize=20,color = 'white')
 	# Major ticks
 	ax.set_xticks(np.arange(0, 4, 1));
 	ax.set_yticks(np.arange(0, 8, 1));
