@@ -19,8 +19,9 @@ catkin_make
 
 ## Usage
 To run all three nodes for each tactile sensor
-`roslaunch wts_ft tactile.launch
-
+```
+roslaunch wts_ft tactile.launch
+```
 
 
 ![heatmap](https://user-images.githubusercontent.com/13660762/32507951-b98aeba6-c3e0-11e7-84e5-1ec11b93e46b.png)
