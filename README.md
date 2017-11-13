@@ -1,6 +1,7 @@
 # WeissTactile
 
-ROS Package for Weiss tactile sensors. Library developed by Pedro Machado.
+Simple ROS Package for Weiss tactile sensors. 
+Library developed by Pedro Machado. Visualisation by Nikesh
 
 The tactie sensor reading is a 8X4 matrix with each element represented with 16bit unsigned ints. Hence,the value can go from 0 to 65536. The values are shown as heatmaps in real time. 
 
@@ -18,7 +19,7 @@ catkin_make
 ```
 
 ## Usage
-To run all three nodes for each tactile sensor
+To run all three nodes each representing one tactile sensor.
 ```
 roslaunch wts_ft tactile.launch
 ```
