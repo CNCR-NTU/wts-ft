@@ -1,47 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-:ABSTRACT:
-WTS-FT support for ROS
-
-:REQUIRES:
-ROS Kinect
-wts_f_interface
-rospy
-:TODO:
-
-:AUTHOR:  Pedro Machado
-:ORGANIZATION: Nottingham Trent University
-:CONTACT: pedro.baptistamachado@ntu.ac.uk
-:SINCE: Thu Jun 29 17:50:49 2017
-:VERSION: 0.1
- 
-This file is part of icub-cncr-ntu project.
-icub-cncr-ntu project can not be copied and/or distributed without the express
-permission of Prof. Martin McGinnity <martin.mcginnity@ntu.ac.uk>
-
-Copyright (C) 2017 All rights reserved, Nottingham Trent University
-Computational Neuroscience and Cognitive Robotics Laboratory
-email:   pedro.baptistamachado@ntu.ac.uk
-website: https://www.ntu.ac.uk/research/groups-and-centres/groups/computational-neuroscience-and-cognitive-robotics-laboratory
-
-
+This script reads three tactile sensors and registers the readings onto the respective topics to be received by respective listening nodes
+Due to possible loss of data during transmission, each serial port is looked into one at a time  
 """
-#===============================================================================
-# PROGRAM METADATA
-#===============================================================================
-__author__ = 'Pedro Machado'
-__contact__ = 'pedro.baptistamachado@ntu.ac.uk'
-__copyright__ = 'iCub_cncr_ntu project can not be copied and/or distributed \
-without the express permission of Prof. Martin McGinnity <martin.mcginnity@ntu.ac.uk'
-__license__ = 'Copyright (C)'
-__date__ = 'Thu Jun 29 17:50:49 2017'
-__version__ = '0.1'
-__file_name__='wts_ft_ros.py'
-__description__='WTS FT publisher for ROS Kinect'
-#===============================================================================
-# IMPORT STATEMENTS
-#===============================================================================
 import wts_ft_interface as wtsft
 import rospy
 from rospy.numpy_msg import numpy_msg
