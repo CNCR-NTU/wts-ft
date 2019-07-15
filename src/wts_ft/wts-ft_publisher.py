@@ -66,7 +66,6 @@ def main(publishers):
         print("CP0")
         time.sleep(200)
         print("CP1")
-    rospy.spin()
 
 
 
@@ -83,6 +82,7 @@ if __name__ == '__main__':
         print("Sensor 2 published in topic: /sensors/wts_ft/2.")
         publishers=[pub0,pub1,pub2]
         main(publishers)
+        rospy.spin()
     except rospy.ROSInterruptException:
         pass
     print("Finalised")
