@@ -56,12 +56,12 @@ PORT = '/dev/ttyACM'
 def getSensorValues(port):
     return wtsft.getSensorValues(port)
 
-def main(publisher):
+def main(pub0):
     while not rospy.is_shutdown():
         sensorsArray = []
         for sensors in range(0, 3):
             sensorsArray.append(getSensorValues(PORT + str(sensors)))
-        publisher[sensors].publish(np.asarray(sensorsArray), dtype=np.float32)
+        pub0.publish(np.asarray(sensorsArray), dtype=np.float32)
         time.sleep(0.050)
 
 
