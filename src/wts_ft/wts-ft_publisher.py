@@ -72,7 +72,7 @@ if __name__ == '__main__':
     rospy.init_node('wts_ft_publisher', anonymous=True)
     try:
         pub0 = rospy.Publisher('sensors/wts_ft/raw', numpy_msg(Floats), queue_size=10)
-        print("Sensor 2 published in topic: /sensors/wts_ft/raw.")
+        print("Sensor published in topic: /sensors/wts_ft/raw.")
         main(pub0)
         rospy.spin()
     except rospy.ROSInterruptException:
