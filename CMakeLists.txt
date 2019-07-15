@@ -9,12 +9,6 @@ std_msgs
 message_generation
 )
 
-add_message_files(
-FILES
-Object.msg
-Objects.msg
-)
-
 generate_messages(
    DEPENDENCIES
    std_msgs
