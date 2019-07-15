@@ -108,7 +108,7 @@ def listener():
 # MAIN METHOD
 #===============================================================================
 if __name__ == '__main__':
-    print("[Initialising wts-ft visualisation...]\n")
+    print("[Initialising wts_ft visualisation...]\n")
     rospy.init_node('visualise_wts_ft', anonymous=True)
     fsr=0
     # if not flag:

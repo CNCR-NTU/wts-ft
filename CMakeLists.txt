@@ -1,26 +1,14 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(wts_ft)
 
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  std_msgs
+)
+
 catkin_python_setup()
 
-find_package(catkin REQUIRED COMPONENTS
-rospy
-std_msgs
-message_generation
-)
+catkin_package()
 
-generate_messages(
-   DEPENDENCIES
-   std_msgs
-)
-
-catkin_package(
-CATKIN_DEPENDS message_runtime
-)
-
-
-include_directories(
-  ${catkin_INCLUDE_DIRS}
-)
-
-
+include_directories(${catkin_INCLUDE_DIRS})
