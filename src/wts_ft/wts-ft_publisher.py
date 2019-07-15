@@ -56,12 +56,12 @@ PORT = '/dev/ttyACM'
 def getSensorValues(port):
     return wtsft.getSensorValues(port)
 
-def main(publishers):
+def main(publisher):
     while not rospy.is_shutdown():
         sensorsArray = []
         for sensors in range(0, 3):
-            sensorsArray.append(np.array(getSensorValues(PORT + str(sensors)), dtype=np.float32))
-            publishers[sensors].publish(sensorsArray[sensors].flatten('F'))
+            sensorsArray.append(getSensorValues(PORT + str(sensors)))
+        publisher[sensors].publish(np.asarray(sensorsArray), dtype=np.float32)
         time.sleep(0.050)
 
 
@@ -71,14 +71,9 @@ if __name__ == '__main__':
     print("[Initialising wts_ft publisher...]\n")
     rospy.init_node('wts_ft_publisher', anonymous=True)
     try:
-        pub0 = rospy.Publisher('sensors/wts_ft/0', numpy_msg(Floats), queue_size=10)
-        pub1 = rospy.Publisher('sensors/wts_ft/1', numpy_msg(Floats), queue_size=10)
-        pub2 = rospy.Publisher('sensors/wts_ft/2', numpy_msg(Floats), queue_size=10)
-        print("Sensor 0 published in topic: /sensors/wts_ft/0.")
-        print("Sensor 1 published in topic: /sensors/wts_ft/1.")
-        print("Sensor 2 published in topic: /sensors/wts_ft/2.")
-        publishers=[pub0,pub1,pub2]
-        main(publishers)
+        pub0 = rospy.Publisher('sensors/wts_ft/raw', numpy_msg(Floats), queue_size=10)
+        print("Sensor 2 published in topic: /sensors/wts_ft/raw.")
+        main(pub0)
         rospy.spin()
     except rospy.ROSInterruptException:
         pass
