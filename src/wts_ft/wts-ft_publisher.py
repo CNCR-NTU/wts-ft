@@ -76,7 +76,7 @@ if __name__ == '__main__':
         print("Sensor 0 published in topic: /sensors/wts-ft/0.")
         print("Sensor 1 published in topic: /sensors/wts-ft/1.")
         print("Sensor 2 published in topic: /sensors/wts-ft/2.")
-        publishers=[pub0,pub1.pub2]
+        publishers=[pub0,pub1,pub2]
         main(publishers)
         rospy.spin()
     except rospy.ROSInterruptException:
