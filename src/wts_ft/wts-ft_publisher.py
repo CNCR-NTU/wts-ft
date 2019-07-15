@@ -64,7 +64,7 @@ def main(publishers):
             print(sensorsArray[sensors])
             publishers[sensors].publish(sensorsArray[sensors].flatten('F'))
         print("CP0")
-        time.sleep(200)
+        time.sleep(0.050)
         print("CP1")
 
 
