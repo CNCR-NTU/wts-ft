@@ -63,9 +63,7 @@ def main(publishers):
             sensorsArray.append(np.array(getSensorValues(PORT + str(sensors)), dtype=np.float32))
             print(sensorsArray[sensors])
             publishers[sensors].publish(sensorsArray[sensors].flatten('F'))
-        print("CP0")
         time.sleep(0.050)
-        print("CP1")
 
 
 
