@@ -56,6 +56,8 @@ P=0.98
 visualisationFlag = True# False #
 SY = 4                           # Num of Sensor columns
 SX = 8                          # Num of Sensor rows
+scale_percent = 4000  # percent of original size
+
 #===============================================================================
 # METHODS
 #===============================================================================
@@ -65,9 +67,8 @@ def callback_wts_ft(data, publishers):
     wts_ft_array=wts_ft_array.reshape((SX,SY,3))
 
     for sensor in range(0, 3):
-        aux=np.array(wts_ft_array[:,:sensor],dtype=np.uint8)
+        aux=wts_ft_array[:,:,sensor].astype(np.uint8)
         if visualisationFlag:
-            scale_percent = 4000  # percent of original size
             width = int(aux.shape[1] * scale_percent / 100)
             height = int(aux.shape[0] * scale_percent / 100)
             dim = (width, height)

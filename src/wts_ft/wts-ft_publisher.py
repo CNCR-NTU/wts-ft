@@ -51,7 +51,8 @@ import time
 # GLOBAL VARIABLES DECLARATIONS
 # ===============================================================================
 PORT = '/dev/ttyACM'
-
+SY = 4                           # Num of Sensor columns
+SX = 8                          # Num of Sensor rows
 
 def getSensorValues(port):
     return wtsft.getSensorValues(port)
@@ -60,7 +61,7 @@ def main(pub0):
     while not rospy.is_shutdown():
         sensorsArray = []
         for sensors in range(0, 3):
-            sensorsArray.append(getSensorValues(PORT + str(sensors)))
+            sensorsArray.append(getSensorValues(PORT + str(sensors)).reshape((SX*SY)))
         pub0.publish(np.asarray(sensorsArray, dtype=np.float32).flatten('F'))
         time.sleep(0.001)
 
