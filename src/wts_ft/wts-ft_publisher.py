@@ -70,9 +70,9 @@ if __name__ == '__main__':
     print("[Initialising wts_ft publisher...]\n")
     rospy.init_node('wts_ft_publisher', anonymous=True)
     try:
-        pub0 = rospy.Publisher('sensors/wts-ft/0', numpy_msg(Floats), queue_size=1)
-        pub1 = rospy.Publisher('sensors/wts-ft/1', numpy_msg(Floats), queue_size=1)
-        pub2 = rospy.Publisher('sensors/wts-ft/2', numpy_msg(Floats), queue_size=1)
+        pub0 = rospy.Publisher('sensors/wts_ft/0', numpy_msg(Floats), queue_size=1)
+        pub1 = rospy.Publisher('sensors/wts_ft/1', numpy_msg(Floats), queue_size=1)
+        pub2 = rospy.Publisher('sensors/wts_ft/2', numpy_msg(Floats), queue_size=1)
         print("Sensor 0 published in topic: /sensors/wts_ft/0.")
         print("Sensor 1 published in topic: /sensors/wts_ft/1.")
         print("Sensor 2 published in topic: /sensors/wts_ft/2.")
