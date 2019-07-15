@@ -66,6 +66,7 @@ def main(publishers):
         print("CP0")
         time.sleep(200)
         print("CP1")
+    rospy.spin()
 
 
 
@@ -77,7 +78,6 @@ if __name__ == '__main__':
         pub0 = rospy.Publisher('sensors/wts_ft/0', numpy_msg(Floats), queue_size=10)
         pub1 = rospy.Publisher('sensors/wts_ft/1', numpy_msg(Floats), queue_size=10)
         pub2 = rospy.Publisher('sensors/wts_ft/2', numpy_msg(Floats), queue_size=10)
-        rospy.spin()
         print("Sensor 0 published in topic: /sensors/wts_ft/0.")
         print("Sensor 1 published in topic: /sensors/wts_ft/1.")
         print("Sensor 2 published in topic: /sensors/wts_ft/2.")
