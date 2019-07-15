@@ -61,7 +61,6 @@ def main(publishers):
         sensorsArray = []
         for sensors in range(0, 3):
             sensorsArray.append(np.array(getSensorValues(PORT + str(sensors)), dtype=np.float32))
-            print(sensorsArray[sensors])
             publishers[sensors].publish(sensorsArray[sensors].flatten('F'))
         time.sleep(0.050)
 
