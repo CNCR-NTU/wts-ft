@@ -43,9 +43,7 @@ __description__='WTS-FT sensors interface'
 import struct
 import crc16
 import serial
-import time
 import numpy as np
-import matplotlib.pyplot as plt
 
 #===============================================================================
 # METHODS
@@ -71,7 +69,7 @@ def prepareacket(command, payload, parameters):
     packet=['AA','AA','AA', command]+payload
     if len(parameters)>0:
         packet+=parameters
-    checksum=crc16.crc(packet)
+    checksum= crc16.crc(packet)
     hexPacket=b''
     for i in range (0,len(packet)):
         hexPacket+=struct.pack(">B",packet[i])
