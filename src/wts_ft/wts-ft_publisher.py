@@ -63,7 +63,10 @@ def main(publishers):
             sensorsArray.append(np.array(getSensorValues(PORT + str(sensors)), dtype=np.float32))
             print(sensorsArray[sensors])
             publishers[sensors].publish(sensorsArray[sensors].flatten('F'))
-        time.sleep(100)
+        print("CP0")
+        time.sleep(200)
+        print("CP1")
+
 
 
 
@@ -71,15 +74,15 @@ if __name__ == '__main__':
     print("[Initialising wts_ft publisher...]\n")
     rospy.init_node('wts_ft_publisher', anonymous=True)
     try:
-        pub0 = rospy.Publisher('sensors/wts_ft/0', numpy_msg(Floats), queue_size=1)
-        pub1 = rospy.Publisher('sensors/wts_ft/1', numpy_msg(Floats), queue_size=1)
-        pub2 = rospy.Publisher('sensors/wts_ft/2', numpy_msg(Floats), queue_size=1)
+        pub0 = rospy.Publisher('sensors/wts_ft/0', numpy_msg(Floats), queue_size=10)
+        pub1 = rospy.Publisher('sensors/wts_ft/1', numpy_msg(Floats), queue_size=10)
+        pub2 = rospy.Publisher('sensors/wts_ft/2', numpy_msg(Floats), queue_size=10)
+        rospy.spin()
         print("Sensor 0 published in topic: /sensors/wts_ft/0.")
         print("Sensor 1 published in topic: /sensors/wts_ft/1.")
         print("Sensor 2 published in topic: /sensors/wts_ft/2.")
         publishers=[pub0,pub1,pub2]
         main(publishers)
-        rospy.spin()
     except rospy.ROSInterruptException:
         pass
     print("Finalised")
