@@ -1,7 +1,5 @@
 <launch>
   <node name = 'pub_sensor1' pkg = "wts_ft" type = "wts_ft_ros_combined.py" />
-  
-  
   <node name = 'listener_sensor1' pkg = "wts_ft" type = "wts_ft_listener.py" />
   <node name = 'listener_sensor2' pkg = "wts_ft" type = "wts_ft_listener_1.py" />
   <node name = 'listener_sensor3' pkg = "wts_ft" type = "wts_ft_listener_2.py" />
