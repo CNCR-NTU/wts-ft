@@ -39,13 +39,7 @@ $ cd ~/catkin_ws/src
 $ git clone https://github.com/CNCR-NTU/wts_ft.git
 ```
 
-## Step 4: install the drivers
-```
-$ cd biotac_sp_ros
-$ ./installCheetahDriver.sh
-```
-
-## Step 5: compile and install
+## Step 4: compile and install
 ```
 $ cd ~/catkin_ws
 $ catkin_make
@@ -53,12 +47,15 @@ $ catkin_make install
 $ source devel/setup.sh
 ```
 
-## Step 6: run
+## Step 5: run the lauch files
 
-Run terminator
+publisher on the RPI
 
 `$ roslaunch wts_ft_publisher.launch`
 
+visualisation on the host pc
+
+`$ roslaunch visualise_wts_ft.launch`
 
 # Understanding the data
 
