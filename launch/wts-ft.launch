@@ -1,6 +1,4 @@
 <launch>
   <machine name="ISTeC031A-02" address="localhost" default="true" timeout="5" env-loader="$HOME/catkin_ws/intera.sh" />
-  <machine name="rpi" address="rpi" default="false" timeout="5" env-loader="$HOME/catkin_ws/intera.sh" />
-  <node machine="rpi" name = 'wts-ft_publisher' pkg = "wts_ft" type = "wts-ft_publisher.py" />
-  <node machine="ISTeC031A-02" name = 'visualise_wts-ft' pkg = "wts_ft" type = "wts-ft_publisher.py" />
+  <node machine="ISTeC031A-02" name = 'visualise_wts_ft' pkg = "wts_ft" type = "visualise_wts_ft.py" />
 </launch>
