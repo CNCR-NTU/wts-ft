@@ -1,4 +1,4 @@
 <launch>
-  <machine name="rpi" address="rpi" default="false" timeout="5" env-loader="$HOME/catkin_ws/intera.sh" />
+  <machine name="rpi" address="021606CP00039.local" default="false" timeout="5" env-loader="$HOME/catkin_ws/intera.sh" />
   <node machine="rpi" name = 'wts_ft_publisher' pkg = "wts_ft" type = "wts_ft_publisher.py" />
 </launch>
