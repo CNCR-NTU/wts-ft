@@ -1,4 +1,4 @@
 <launch>
-  <machine name="ISTeC031A-02" address="ISTeC031A-02" default="true" env-loader="$HOME/catkin_ws/intera.sh" />
+<!--  <machine name="ISTeC031A-02" address="ISTeC031A-02" default="true" env-loader="$HOME/catkin_ws/intera.sh" />-->
   <node name = 'wts_ft_publisher' pkg = "wts_ft" type = "wts-ft_publisher.py" />
 </launch>
