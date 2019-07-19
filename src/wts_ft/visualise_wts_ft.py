@@ -58,13 +58,31 @@ SY = 4                           # Num of Sensor columns
 SX = 8                          # Num of Sensor rows
 scale_percent = 6000  # percent of original size
 
+global fsr, max, calibration
+calibration =  True # False #
+if calibration:
+    global norm_value
+
+PATH=os.path.dirname(os.path.realpath(__file__))+"/parameters/"
 #===============================================================================
 # METHODS
 #===============================================================================
 def callback_wts_ft(data, publishers):
-    global flag, prev_mat, fsr
+    global fsr, max
+    if calibration:
+        global calibration, norm_value
+
     wts_ft_array = data.data
     wts_ft_array=wts_ft_array.reshape((SX,SY,3))
+    if calibration:
+        aux1=wts_ft_array.max()
+        if (aux1>max):
+            max=aux1
+            print("New Max:", max)
+            norm_value=np.float32(255.0/max)
+            np.save(PATH+"sensors_calibration.npy",np.asarray(norm_value))
+    wts_ft_array = np.dot(wts_ft_array, norm_value)
+
 
     for sensor in range(0, 3):
         aux=wts_ft_array[:,:,sensor].astype(np.uint8)
@@ -76,8 +94,7 @@ def callback_wts_ft(data, publishers):
             aux = cv2.resize(aux, dim, interpolation=cv2.INTER_AREA)
             im_color = (cv2.applyColorMap(aux, cv2.COLORMAP_HOT))
             cv2.imshow("Sensor " + str(sensor), im_color)
-            publishers[sensor].publish(wts_ft_array[:,:sensor].flatten('F'))
-            print(wts_ft_array[:,:sensor])
+            publishers[sensor].publish(wts_ft_array[:,:,sensor].flatten('F'))
 
     if visualisationFlag and cv2.waitKey(1) & 0xFF == ord('q'):
         rospy.signal_shutdown('Quit')
@@ -85,7 +102,6 @@ def callback_wts_ft(data, publishers):
 
 
 def listener():
-    global flag
     while not rospy.is_shutdown():
         try:
             pub0 = rospy.Publisher('sensors/wts_ft/0', numpy_msg(Floats), queue_size=10)
@@ -113,6 +129,11 @@ if __name__ == '__main__':
     print("[Initialising wts_ft visualisation...]\n")
     rospy.init_node('visualise_wts_ft', anonymous=True)
     fsr=0
+    max=0.0
+    if calibration:
+        norm_value=0.0
+    else:
+        norm_value=np.load(PATH+"sensors_calibration.npy").max()
     # if not flag:
     #     main()
     #     flag = True
