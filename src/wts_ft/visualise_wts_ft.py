@@ -68,9 +68,9 @@ PATH=os.path.dirname(os.path.realpath(__file__))+"/parameters/"
 # METHODS
 #===============================================================================
 def callback_wts_ft(data, publishers):
-    global fsr, max
+    global fsr, max, calibration
     if calibration:
-        global calibration, norm_value
+        global norm_value
 
     wts_ft_array = data.data
     wts_ft_array=wts_ft_array.reshape((SX,SY,3))
