@@ -59,7 +59,7 @@ SX = 8                          # Num of Sensor rows
 scale_percent = 6000  # percent of original size
 
 global fsr, max, calibration
-calibration =  True # False #
+calibration =  False # True #
 if calibration:
     global norm_value
 
