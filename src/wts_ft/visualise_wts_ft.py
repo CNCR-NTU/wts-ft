@@ -56,7 +56,7 @@ P=0.98
 visualisationFlag = True# False #
 SY = 4                           # Num of Sensor columns
 SX = 8                          # Num of Sensor rows
-scale_percent = 4000  # percent of original size
+scale_percent = 6000  # percent of original size
 
 #===============================================================================
 # METHODS
@@ -77,6 +77,7 @@ def callback_wts_ft(data, publishers):
             im_color = (cv2.applyColorMap(aux, cv2.COLORMAP_HOT))
             cv2.imshow("Sensor " + str(sensor), im_color)
             publishers[sensor].publish(wts_ft_array[:,:sensor].flatten('F'))
+            print(wts_ft_array[:,:sensor])
 
     if visualisationFlag and cv2.waitKey(1) & 0xFF == ord('q'):
         rospy.signal_shutdown('Quit')
