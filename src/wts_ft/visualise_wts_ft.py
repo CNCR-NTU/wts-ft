@@ -68,9 +68,7 @@ PATH=os.path.dirname(os.path.realpath(__file__))+"/parameters/"
 # METHODS
 #===============================================================================
 def callback_wts_ft(data, publishers):
-    global fsr, max, calibration
-    if calibration:
-        global norm_value
+    global fsr, max, calibration, norm_value
 
     wts_ft_array = data.data
     wts_ft_array=wts_ft_array.reshape((SX,SY,3))
@@ -134,7 +132,4 @@ if __name__ == '__main__':
         norm_value=0.0
     else:
         norm_value=np.load(PATH+"sensors_calibration.npy").max()
-    # if not flag:
-    #     main()
-    #     flag = True
     listener()
