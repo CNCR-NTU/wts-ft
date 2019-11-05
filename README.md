@@ -1,6 +1,6 @@
 # WTS-FT
 
-This repository is for hosting the WTS-FT sensors sofware released under the lgpl3.0 license.
+This repository is for hosting the WTS-FT sensors software released under the lgpl3.0 license.
 
 # Requirements
 
@@ -57,7 +57,21 @@ visualisation on the host pc
 
 `$ roslaunch visualise_wts_ft.launch`
 
-# Understanding the data
+# Howto cite?
+```
+@software{machado_pedro_2019_3529664,
+  author       = {Machado, Pedro and
+                  McGinnity, T.M.},
+  title        = {WTS-FT ROS package},
+  month        = nov,
+  year         = 2019,
+  publisher    = {Zenodo},
+  version      = {1.0.0},
+  doi          = {10.5281/zenodo.3529664},
+  url          = {https://doi.org/10.5281/zenodo.3529664}
+}
+```
+
 
 
 # Contacts
@@ -67,8 +81,6 @@ Computational Neurosciences and Cognitive Robotics Group at the Nottingham Trent
 * Pedro Machado pedro.baptistamachado@ntu.ac.uk
 
 * Martin McGinnity martin.mcginnity@ntu.ac.uk
-
-
 
 
 
