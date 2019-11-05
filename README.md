@@ -47,7 +47,7 @@ $ catkin_make install
 $ source devel/setup.sh
 ```
 
-## Step 5: run the lauch files
+## Step 5: run the launch files
 
 publisher on the RPI
 
@@ -61,6 +61,7 @@ visualisation on the host pc
 ```
 @software{machado_pedro_2019_3529664,
   author       = {Machado, Pedro and
+                  Lama, Nikesh and
                   McGinnity, T.M.},
   title        = {WTS-FT ROS package},
   month        = nov,
@@ -72,7 +73,7 @@ visualisation on the host pc
 }
 ```
 
-
+![](https://github.com/CNCR-NTU/wts_ft/blob/master/Documentation/zenodo.3529664.svg)
 
 # Contacts
 
