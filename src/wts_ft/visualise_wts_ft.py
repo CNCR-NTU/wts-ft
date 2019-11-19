@@ -63,7 +63,7 @@ global fsr, max, calibration
 calibration =  False # True #
 if calibration:
     global norm_value
-FINGERTIPS=fc.FINGERTIPS
+FINGERTIPS=["Thumb","Index","Ring"]
 
 PATH=os.path.dirname(os.path.realpath(__file__))+"/parameters/"
 
